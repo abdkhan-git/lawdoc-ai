@@ -1,14 +1,44 @@
-import React from 'react'
- 
- type Props = { pdf_url: string }
- 
- const PDFViewer = ({ pdf_url }: Props) => {
-     return (
-         <iframe src={`https://docs.google.com/gview?url=${pdf_url}&embedded=true`} 
-         className='w-full h-full'>
- 
-         </iframe>
-     )
- }
- 
- export default PDFViewer
+'use client';
+
+import React, { useState } from 'react';
+import { FileText, Loader2 } from 'lucide-react';
+
+type Props = { pdf_url: string };
+
+const PDFViewer = ({ pdf_url }: Props) => {
+    const [loading, setLoading] = useState(true);
+    
+    return (
+        <div className="flex flex-col h-full rounded-lg overflow-hidden border border-blue-100 shadow-sm bg-white">
+            {/* PDF Header */}
+            <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-600/10 to-blue-700/5 border-b border-blue-100">
+                <div className="flex items-center gap-2">
+                    <FileText className="h-5 w-5 text-blue-600" />
+                    <h3 className="font-medium text-gray-800 truncate max-w-md">
+                        {pdf_url.split('/').pop()?.split('?')[0] || "Document"}
+                    </h3>
+                </div>
+            </div>
+            
+            {/* PDF Viewer with loading state */}
+            <div className="flex-1 relative">
+                {loading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-10">
+                        <div className="text-center">
+                            <Loader2 className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-2" />
+                            <p className="text-sm text-gray-600">Loading document...</p>
+                        </div>
+                    </div>
+                )}
+                
+                <iframe 
+                    src={`https://docs.google.com/gview?url=${encodeURIComponent(pdf_url)}&embedded=true`}
+                    className="w-full h-full border-0"
+                    onLoad={() => setLoading(false)}
+                />
+            </div>
+        </div>
+    );
+};
+
+export default PDFViewer;
