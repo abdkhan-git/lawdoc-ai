@@ -14,30 +14,24 @@ const MessageList = ({ messages }: Props) => {
                 return (
                     <div key={message.id}
                         className={cn('flex', {
-                            //if the message is from the user, it will be displayed to the right
-                            'justify-end pl-10': message.role === 'user',
-
-                            //if the message is from A.I, it will be displayed to the left
+                            'justify-end pl-10 pt-2': message.role === 'user',
                             'justify-start pr-10': message.role === 'assistant'
                         })}
                     >
-
                         <div className={
                             cn('rounded-lg px-3 text-sm py-1 shadow-md ring-1 ring-gray-900/10', {
-                                //user's content and text will be styled blue
                                 'bg-blue-600 text-white': message.role === 'user',
-                                // 'bg-gray-200 text-gray-900': message.role === 'assistant'
+                                'bg-gray-200 text-gray-900': message.role === 'assistant'
                             })
                         }>
                             <p>{message.content}</p>
-
                         </div>
-
                     </div>
                 )
             })}
         </div>
     )
 }
+
 
 export default MessageList
