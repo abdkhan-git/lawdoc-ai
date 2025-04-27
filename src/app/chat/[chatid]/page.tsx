@@ -52,7 +52,7 @@ import ChatComponent from "@/components/ChatComponent";
  
          {/* chat component */}
          <div className="flex-[3] border-l-4 border-l-slate-200">
-           <ChatComponent />
+          <ChatComponent chatid={parseInt(chatid)} />
          </div>
        </div>
      </div>

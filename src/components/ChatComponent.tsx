@@ -6,12 +6,15 @@ import { Button } from './ui/button'
 import { Send } from 'lucide-react'
 import MessageList from './MessageList'
 
-type Props = {}
+type Props = { chatid: number }
 
-const ChatComponent = (props: Props) => {
+const ChatComponent = ({chatid}: Props) => {
     const { input, handleInputChange, handleSubmit, messages } = useChat({
         //endpoint so that when "enter" is pressed, user's message will be sent to ai and the ai will send back responses
         api: "/api/chat",
+        body: {
+            chatid
+        }
     });
 
     return (
