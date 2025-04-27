@@ -40,16 +40,18 @@ export default async function Home() {
           </p>
 
           {/* File Upload or Login */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8">
             {isAuth ? (
               <FileUpload />
             ) : (
-              <Link href="/sign-in">
-                <Button size="lg" className="flex items-center gap-2">
-                  Login to get Started
-                  <LogIn className="w-5 h-5" />
-                </Button>
-              </Link>
+              <div className="mt-8 flex justify-center">
+                <Link href="/sign-in">
+                  <Button size="lg" className="flex items-center gap-2">
+                    Login to get Started
+                    <LogIn className="w-5 h-5" />
+                  </Button>
+                </Link>
+              </div>
             )}
           </div>
         </div>
