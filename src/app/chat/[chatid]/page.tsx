@@ -7,6 +7,7 @@ import { db } from "@/lib/db";
  import { parse } from "path";
  import ChatSideBar from "@/components/ChatSideBar";
 import PDFViewer from "@/components/PDFViewer";
+import ChatComponent from "@/components/ChatComponent";
  
  type Props = {
    params: {
@@ -51,7 +52,7 @@ import PDFViewer from "@/components/PDFViewer";
  
          {/* chat component */}
          <div className="flex-[3] border-l-4 border-l-slate-200">
-           {/* <ChatComponent /> */}
+           <ChatComponent />
          </div>
        </div>
      </div>
