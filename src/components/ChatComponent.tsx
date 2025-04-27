@@ -15,17 +15,20 @@ const ChatComponent = (props: Props) => {
     });
 
     return (
-        <div className='relative max-h-screen overflow-scroll'>
+        <div className='relative flex flex-col h-screen bg-gray-100'>
             {/* header */}
-            <div className='sticky top-0 inset-x-0 p-2 bg-white h-fit'>
-                <h3 className='text-xl font-bold'>Chat</h3>
+            <div className='sticky top-0 inset-x-0 p-2 bg-white h-fit z-10'>
+                <h3 className='text-xl font-bold'>Ask our amazing LawDoc A.I for answers!</h3>
             </div>
 
-            {/* message list */}
-            <MessageList messages={messages} />
+            {/* message list  */}
+            <div className='flex-1 overflow-y-auto pb-20'>
+                <MessageList messages={messages} />
+            </div>
 
+            {/* input form */}
             <form onSubmit={handleSubmit}
-                className='sticky top-0 inset-x-0 px-2 py-4 bg-white'
+                className='absolute bottom-0 inset-x-0 px-2 py-4 bg-white border-t border-gray-200'
             >
                 <div className='flex'>
                     {/* this allows ai to control this input  */}
@@ -39,7 +42,6 @@ const ChatComponent = (props: Props) => {
                         <Send className='h-4 w-4' />
                     </Button>
                 </div>
-
             </form>
         </div>
     )
