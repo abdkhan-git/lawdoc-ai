@@ -4,15 +4,39 @@ import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { LogIn, FileText, ArrowRight } from "lucide-react";
 import FileUpload from "@/components/FileUpload";
+import "@/styles/bubbles.css";
 
 export default async function Home() {
   const { userId } = await auth();
   const isAuth = !!userId;
 
   return (
-    <div className="w-full min-h-screen bg-[#1c3e94] text-white overflow-x-hidden">
+    <div className="relative w-full min-h-screen bg-[#1c3e94] text-white overflow-x-hidden">
+      {/* Bubble Background */}
+      <div className="absolute inset-0 z-0 bubble-background">
+        {Array.from({ length: 30 }).map((_, i) => {
+          const size = Math.random() * 60 + 20; // Bubbles between 20px and 80px
+          const left = Math.random() * 100; // Random horizontal position
+          const animationDuration = Math.random() * 10 + 5; // 5s to 15s
+          return (
+            <span
+              key={i}
+              className="bubble"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${left}%`,
+                bottom: `-${size}px`,
+                animation: `animate ${animationDuration}s linear infinite`,
+                animationDelay: `${Math.random() * 5}s`, // Staggered start
+              }}
+            />
+          );
+        })}
+      </div>
+
       {/* Navigation/Header */}
-      <header className="w-full py-4 px-6 flex justify-between items-center">
+      <header className="relative z-10 w-full py-4 px-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <FileText className="w-8 h-8 text-blue-300" />
           <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white">
@@ -24,7 +48,11 @@ export default async function Home() {
             <UserButton afterSignOutUrl="/" />
           ) : (
             <Link href="/sign-in">
-              <Button variant="outline" className="border-blue-400 text-blue-200 hover:bg-blue-800/40">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-xl shadow-lg shadow-blue-900/50 transition-all hover:shadow-xl"
+              >
+                <LogIn className="w-5 h-5 mr-2" />
                 Sign In
               </Button>
             </Link>
@@ -33,9 +61,9 @@ export default async function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="w-full px-4 py-8 md:py-12 flex flex-col items-center justify-center">
+      <main className="relative z-10 w-full px-4 py-8 md:py-12 flex flex-col items-center justify-center">
         <div className="max-w-3xl w-full text-center">
-          {/* Hero Section - Fixed typography with gradient text */}
+          {/* Hero Section */}
           <div className="mb-12">
             <h1 className="text-5xl md:text-6xl font-bold leading-[1.3] mb-0 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white inline-block">
               Legal Documents,
@@ -51,7 +79,7 @@ export default async function Home() {
             </p>
           </div>
 
-          {/* Feature highlights with gradient accents */}
+          {/* Feature Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 my-10">
             <div className="bg-blue-800/30 p-4 md:p-6 rounded-xl backdrop-blur-sm border border-blue-700/50">
               <h3 className="text-lg md:text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white inline-block">Ask Questions</h3>
@@ -67,7 +95,7 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Call to Action with gradient button */}
+          {/* Call to Action */}
           <div className="py-6 md:py-8">
             {isAuth ? (
               <div className="space-y-6">
@@ -100,7 +128,7 @@ export default async function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full py-4 md:py-6 px-4 border-t border-blue-800/50 text-center text-blue-300 mt-auto">
+      <footer className="relative z-10 w-full py-4 md:py-6 px-4 border-t border-blue-800/50 text-center text-blue-300 mt-auto">
         <p className="text-sm">© {new Date().getFullYear()} LawDocAI. All rights reserved.</p>
       </footer>
     </div>
