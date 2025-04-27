@@ -10,12 +10,12 @@ import PDFViewer from "@/components/PDFViewer";
  
  type Props = {
    params: {
-     chatId: string;
+     chatid: string;
    };
       
  };
  
- const ChatPage = async ({ params: { chatId } }: Props) => {
+ const ChatPage = async ({ params: { chatid } }: Props) => {
    const { userId } = await auth();
  
    if (!userId) {
@@ -28,18 +28,18 @@ import PDFViewer from "@/components/PDFViewer";
      return redirect("/");
    }
  
-   if (!_chats.find((chat) => chat.id === parseInt(chatId))) {
+   if (!_chats.find((chat) => chat.id === parseInt(chatid))) {
      return redirect("/");
    }
  
-   const currentChat = _chats.find((chat) => chat.id === parseInt(chatId));
+   const currentChat = _chats.find((chat) => chat.id === parseInt(chatid));
  
    return (
      <div className="flex max-h-screen overflow-scroll">
        <div className="flex w-full max-h-screen overflow-scroll">
          {/* chat sidebar */}
          <div className="flex-[1] max-w-xs">
-           <ChatSideBar chats={_chats} chatId={parseInt(chatId)} />
+           <ChatSideBar chats={_chats} chatId={parseInt(chatid)} />
          </div>
  
          {/* pdf viewer */}
