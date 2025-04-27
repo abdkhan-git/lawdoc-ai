@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "LawDocAI",
+  description: "AI-powered legal document assistant",
 };
 
 export default function RootLayout({
@@ -32,8 +33,8 @@ export default function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
             {children}
+            <Toaster position="bottom-right" />
           </body>
-          <Toaster />
         </html>
       </Providers>
     </ClerkProvider>
