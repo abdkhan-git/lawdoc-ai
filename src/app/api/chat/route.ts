@@ -1,30 +1,17 @@
-import { Configuration, OpenAIApi } from 'openai-edge';
+
+import { streamText } from 'ai';
+import { openai } from '@ai-sdk/openai';
 
 export const runtime = 'edge';
 
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(config);
-
 export async function POST(req: Request) {
-  try {
-    const { messages } = await req.json();
+  const { messages } = await req.json();
 
-    const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages,
-      stream: true,
-    });
+  const result = await streamText({
+    model: openai('gpt-3.5-turbo'), // Updated model
+    system: 'You are a helpful assistant.',
+    messages,
+  });
 
-    return new Response(response.body, {
-      headers: {
-        'Content-Type': 'text/event-stream',
-      },
-    });
-  } catch (error) {
-    console.error(error);
-    return new Response('Error', { status: 500 });
-  }
+  return result.toDataStreamResponse();
 }
