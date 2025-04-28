@@ -6,18 +6,24 @@ import { Button } from './ui/button';
 import { Send, Bot, ArrowDown } from 'lucide-react';
 import MessageList from './MessageList';
 
-type Props = { chatid: number }; // Keep the chatid prop
+type Props = { chatid: number };
 
 const ChatComponent = ({ chatid }: Props) => {
+    // Use the useChat hook to manage chat state and functionality
+    // This handles input state, message history, and API communication
     const { input, handleInputChange, handleSubmit, messages, isLoading } = useChat({
-        api: "/api/chat",
+        api: "/api/chat",  // API endpoint for chat interactions
         body: {
-            chatid // Keep passing chatid to API
+            chatid  // Pass the chat ID to the API to maintain conversation context
         }
     });
 
+    // Reference to automatically scroll to the latest message
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    // Reference to the chat container for scroll management
     const chatContainerRef = useRef<HTMLDivElement>(null);
+
     
     // Scroll to bottom of messages when new messages are added
     const scrollToBottom = () => {
@@ -38,7 +44,7 @@ const ChatComponent = ({ chatid }: Props) => {
                 </div>
             </div>
 
-            {/* Message List */}
+            {/* Message List where the user and A.I Chatbot can exchange messages */}
             <div className="flex-1 overflow-y-auto pb-20" ref={chatContainerRef}>
                 <MessageList messages={messages} />
                 <div ref={messagesEndRef} />
@@ -68,6 +74,8 @@ const ChatComponent = ({ chatid }: Props) => {
                 onSubmit={handleSubmit}
                 className='absolute bottom-0 inset-x-0 px-4 py-3 bg-white border-t border-gray-200'
             >
+
+                {/* Input field to ask questions to the A.I chatbot */}
                 <div className='flex'>
                     <Input 
                         value={input}
@@ -77,6 +85,7 @@ const ChatComponent = ({ chatid }: Props) => {
                         disabled={isLoading}
                     />
 
+                    {/* Send button to submit the question */}
                     <Button 
                         className='ml-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-sm' 
                         disabled={isLoading || !input.trim()}
