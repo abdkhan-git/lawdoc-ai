@@ -34,8 +34,8 @@ Follow these steps to set up the project locally:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR-USERNAME/law-document-ai-assistant.git
-cd law-document-ai-assistant
+git clone https://github.com/YOUR-USERNAME/lawdoc-ai
+cd lawdoc-ai
 ```
 
 ### 2. Install dependencies
@@ -125,6 +125,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Brian Niski](https://github.com/niskb) - Developer
 - [Magdaleno Perez](https://github.com/MaggPerez) - Developer
 - [Shivansh Kumar](https://github.com/Shivy40) - Developer
+
+### Dev Post Link
+https://devpost.com/software/law-document-ai-assistant
+
+### Youtube Demo Link
+https://youtu.be/hiOya0MkuSE
+
 
 - Thanks to all the open-source libraries that made this project possible
 - Special thanks to the legal professionals who provided feedback during development
