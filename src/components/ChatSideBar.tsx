@@ -30,9 +30,11 @@ const ChatSideBar = ({ chats, chatId }: Props) => {
                 </Button>
             </Link>
 
-            {/* Chat List */}
+            {/* Chat List that contains history of past conversations */}
             <div className="flex flex-col gap-2 mt-2 overflow-y-auto flex-grow">
                 <h3 className="text-sm text-blue-300 font-medium mb-1 ml-1">Your Documents</h3>
+
+                {/* Display list of chat conversations from database */}
                 {chats.map(chat => (
                     <Link key={chat.id} href={`/chat/${chat.id}`}>
                         <div className={

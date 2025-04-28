@@ -5,6 +5,13 @@ import Link from "next/link";
 import { LogIn, FileText, ArrowRight } from "lucide-react";
 import FileUpload from "@/components/FileUpload";
 
+/**
+ * Displays the following:
+ * Marketing homepage with different UI based on authentication status,
+ * Features a hero section, highlights section, 
+ * Call-to action buttons for document upload and analysis
+ * @returns landing page of LawDocAI application
+ */
 export default async function Home() {
   const { userId } = await auth();
   const isAuth = !!userId;
@@ -20,6 +27,7 @@ export default async function Home() {
           </span>
         </div>
         <div>
+          {/* User Authentication Buttons */}
           {isAuth ? (
             <UserButton afterSignOutUrl="/" />
           ) : (
