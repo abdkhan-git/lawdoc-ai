@@ -1,4 +1,5 @@
 # Law Document AI Assistant
+![image](https://github.com/user-attachments/assets/f99170cf-fbe6-4393-951d-f08751cb69f5)
 
 ## Overview
 Welcome to the "Law Document AI Assistant" project! This platform allows users to upload complex legal PDFs and interact with an AI to simplify, summarize, and extract key information from them. The goal is to make law documents easier to understand and work with, even for those without legal expertise. Users can create chats around their documents and interact with an AI assistant that leverages powerful language models to provide meaningful insights and explanations about legal content. The application also includes a subscription feature that gives users access to premium capabilities through a seamless payment process.
@@ -91,17 +92,23 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 ```
 /
-├── app/                    # Next.js app directory
-│   ├── api/                # API routes
-│   ├── (auth)/             # Authentication pages
-│   ├── (dashboard)/        # User dashboard pages
-│   └── (marketing)/        # Landing page and marketing content
+├── app/                    # Main Next.js app directory
+│   ├── api/                # API endpoints
+│   ├── dashboard/          # Dashboard views and pages
+│   ├── auth/               # Authentication pages and logic
+│   └── upload/             # Document upload and management pages
 ├── components/             # Reusable UI components
-├── lib/                    # Utility functions and configuration
-│   ├── db/                 # Database configuration
-│   └── pinecone/           # Vector database setup
-├── public/                 # Static assets
-└── styles/                 # Global styles
+├── lib/                    # Helper libraries and utilities
+│   ├── openai/             # OpenAI API integration
+│   └── pinecone/           # Pinecone vector database setup
+├── models/                 # Database models (e.g., user, document)
+├── public/                 # Static assets like images
+├── styles/                 # Global and component-specific styles
+├── utils/                  # Miscellaneous utility functions
+├── .env.local              # Environment variables
+├── next.config.js          # Next.js configuration
+├── package.json            # Project dependencies and scripts
+└── README.md               # Project documentation
 ```
 
 ## Contributing
