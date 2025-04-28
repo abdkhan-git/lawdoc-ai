@@ -6,11 +6,12 @@ import { Button } from './ui/button';
 import { Send, Bot, ArrowDown } from 'lucide-react';
 import MessageList from './MessageList';
 
-type Props = { chatid: number }; // Keep the chatid prop
+type Props = { chatid: number };
 
 const ChatComponent = ({ chatid }: Props) => {
     const { input, handleInputChange, handleSubmit, messages, isLoading } = useChat({
         api: "/api/chat",
+        id: chatid.toString(), // Use unique ID to maintain conversation history
         body: {
             chatid // Keep passing chatid to API
         }
