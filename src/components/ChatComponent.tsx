@@ -12,7 +12,8 @@ const ChatComponent = ({ chatid }: Props) => {
     // Use the useChat hook to manage chat state and functionality
     // This handles input state, message history, and API communication
     const { input, handleInputChange, handleSubmit, messages, isLoading } = useChat({
-        api: "/api/chat",  // API endpoint for chat interactions
+        api: "/api/chat",
+        id: chatid.toString(), // Use unique ID to maintain conversation history
         body: {
             chatid  // Pass the chat ID to the API to maintain conversation context
         }
